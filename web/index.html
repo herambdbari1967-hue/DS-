@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoCorrect Pro | High-Performance Predictive Text & Spell-Checker</title>
+  <meta name="description" content="Modern SaaS dashboard for Trie, Heap, and Levenshtein predictive text engine with WhatsApp shortcuts.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- macOS Window Mockup Frame -->
+  <div class="macos-window-frame">
+
+    <!-- Top macOS Window Header Bar -->
+    <header class="macos-top-bar">
+      <div class="macos-traffic-lights">
+        <span class="traffic-dot red"></span>
+        <span class="traffic-dot yellow"></span>
+        <span class="traffic-dot green"></span>
+      </div>
+
+      <div class="macos-url-pill">
+        <img src="logo.png" alt="Logo" style="width: 16px; height: 16px; border-radius: 4px; object-fit: cover;">
+        <span>autocorrect.ai/engine/dashboard</span>
+      </div>
+
+      <div class="macos-top-actions">
+        <i class="fas fa-arrow-up-right-from-square" style="cursor: pointer;" title="Open in new tab"></i>
+        <i class="fas fa-share-nodes" style="cursor: pointer;" title="Share"></i>
+        <i class="fas fa-plus" style="cursor: pointer;" title="New Tab"></i>
+      </div>
+    </header>
+
+    <!-- Main Dashboard Layout -->
+    <div class="dashboard-main-layout">
+
+      <!-- Left Sidebar Navigation -->
+      <aside class="app-sidebar">
+        <div>
+          <!-- Brand Logo -->
+          <div class="sidebar-brand">
+            <img src="logo.png" alt="AutoCorrect Logo" class="brand-logo-img">
+            <div class="brand-info">
+              <h1>AutoCorrect Pro</h1>
+              <p>DATA STRUCTURES CRM</p>
+            </div>
+          </div>
+
+          <!-- Search Box -->
+          <div class="sidebar-search-box">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i class="fas fa-search" style="font-size: 0.8rem; color: var(--text-dim);"></i>
+              <input type="text" id="sidebarSearchInput" placeholder="Search...">
+            </div>
+            <kbd>⌘S</kbd>
+          </div>
+
+          <!-- Nav Group 1: General -->
+          <div class="sidebar-nav-group">
+            <div class="nav-group-title">General</div>
+            <div class="sidebar-nav-list">
+              <button class="sidebar-nav-item active" data-tab="tab-dashboard" id="nav-btn-dashboard">
+                <i class="fas fa-table-cells-large"></i> Dashboard
+              </button>
+              <button class="sidebar-nav-item" data-tab="tab-slang" id="nav-btn-slang">
+                <i class="fas fa-comment-dots"></i> WhatsApp Slang
+              </button>
+              <button class="sidebar-nav-item" data-tab="tab-trie" id="nav-btn-trie">
+                <i class="fas fa-project-diagram"></i> Trie Visualizer
+              </button>
+            </div>
+          </div>
+
+          <!-- Nav Group 2: Engine Management -->
+          <div class="sidebar-nav-group">
+            <div class="nav-group-title">Engine Management</div>
+            <div class="sidebar-nav-list">
+              <button class="sidebar-nav-item" data-tab="tab-matrix" id="nav-btn-matrix">
+                <i class="fas fa-table"></i> Levenshtein Matrix
+              </button>
+              <button class="sidebar-nav-item" data-tab="tab-batch" id="nav-btn-batch">
+                <i class="fas fa-file-lines"></i> Batch Spell-Fixer
+              </button>
+              <button class="sidebar-nav-item" data-tab="tab-dict" id="nav-btn-dict">
+                <i class="fas fa-book-open"></i> Vocabulary Base
+              </button>
+            </div>
+          </div>
+
+          <!-- Nav Group 3: Analytics -->
+          <div class="sidebar-nav-group">
+            <div class="nav-group-title">Analytics</div>
+            <div class="sidebar-nav-list">
+              <button class="sidebar-nav-item" data-tab="tab-analytics" id="nav-btn-analytics">
+                <i class="fas fa-chart-line"></i> Big-O Analytics
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Upgrade Card -->
+        <div class="sidebar-upgrade-card">
+          <div class="upgrade-card-title">
+            <span>Unlock Pro Engine</span>
+            <i class="fas fa-xmark" style="font-size: 0.75rem; cursor: pointer;"></i>
+          </div>
+          <p class="upgrade-card-desc">
+            Bounded Levenshtein DP & Trie $\mathcal{O}(L)$ prefix matching active.
+          </p>
+          <button class="btn-sidebar-upgrade" onclick="app.showToast('System Running at Peak Sub-microsecond Speed!', 'success')">
+            Active & Running
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="app-content-panel">
+
+        <!-- Top Breadcrumb & User Header -->
+        <div class="content-header-bar">
+          <div class="breadcrumb-path">
+            <i class="far fa-folder" style="color: var(--text-dim);"></i>
+            <span>Engine Management</span>
+            <span>/</span>
+            <strong id="breadcrumbCurrent">Products Management</strong>
+          </div>
+
+          <div class="header-tools-right">
+            <div class="header-search-pill">
+              <i class="fas fa-search" style="font-size: 0.8rem; color: var(--text-dim);"></i>
+              <input type="text" id="globalHeaderSearch" placeholder="Search dictionary, prefixes...">
+              <span style="font-size: 0.75rem; color: var(--text-dim); font-weight: 700;">/</span>
+            </div>
+
+            <button class="notification-pill-btn" onclick="app.showToast('All 10,652 words and WhatsApp shortcuts loaded!', 'info')">
+              <i class="far fa-bell"></i>
+              <span class="notification-badge-dot"></span>
+            </button>
+
+            <div class="user-profile-widget">
+              <div class="user-avatar-img">SJ</div>
+              <span class="user-name-label">Sarah Jenkins ▾</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Page Title & Actions Row -->
+        <div class="page-title-row">
+          <div class="page-title-text">
+            <h2 id="pageMainHeading">Products Management</h2>
+            <p id="pageSubHeading">Manage vocabulary, track prediction performance, and test live WhatsApp shortcuts.</p>
+          </div>
+
+          <div class="page-actions-group">
+            <button class="btn-secondary-pill" id="btnFilterCategory">
+              <span>All Categories</span> <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+            </button>
+            <button class="btn-secondary-pill" onclick="app.exportDictionary()">
+              <i class="fas fa-arrow-up-from-bracket"></i> Export report
+            </button>
+            <button class="btn-primary-pill" onclick="app.openAddWordModal()">
+              <i class="fas fa-plus"></i> + Add New Product
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB 1: MAIN DASHBOARD & PLAYGROUND -->
+        <div class="tab-pane active" id="tab-dashboard">
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            
+            <!-- 4 Top Analytics Stat Metric Cards Grid -->
+            <div class="saas-metrics-grid">
+              
+              <!-- Metric 1 -->
+              <div class="metric-card-box">
+                <div class="metric-card-header">
+                  <div>
+                    <div class="metric-card-title">Total Vocabulary</div>
+                    <div class="metric-card-sub">Total Dictionary Words</div>
+                  </div>
+                  <i class="fas fa-ellipsis metric-card-more"></i>
+                </div>
+                <div class="metric-val-row">
+                  <div class="metric-number-big" id="dashTotalWords">10,652</div>
+                  <span class="metric-trend-badge purple" style="background: #f3e8ff; padding: 2px 8px; border-radius: 6px;">
+                    +840 items this week
+                  </span>
+                </div>
+                <!-- Sparkline SVG -->
+                <svg class="sparkline-svg" viewBox="0 0 100 30">
+                  <rect x="5" y="15" width="8" height="15" fill="#e2e8f0" rx="2"></rect>
+                  <rect x="20" y="10" width="8" height="20" fill="#e2e8f0" rx="2"></rect>
+                  <rect x="35" y="4" width="8" height="26" fill="#a855f7" rx="2"></rect>
+                  <rect x="50" y="8" width="8" height="22" fill="#e2e8f0" rx="2"></rect>
+                  <rect x="65" y="14" width="8" height="16" fill="#e2e8f0" rx="2"></rect>
+                  <rect x="80" y="18" width="8" height="12" fill="#e2e8f0" rx="2"></rect>
+                </svg>
+              </div>
+
+              <!-- Metric 2 -->
+              <div class="metric-card-box">
+                <div class="metric-card-header">
+                  <div>
+                    <div class="metric-card-title">Top-K Predictions</div>
+                    <div class="metric-card-sub">Completed Autocompletes</div>
+                  </div>
+                  <i class="fas fa-ellipsis metric-card-more"></i>
+                </div>
+                <div class="metric-val-row">
+                  <div class="metric-number-big" id="dashPredictionsCount">1,450</div>
+                  <div class="metric-trend-badge purple"><i class="fas fa-arrow-trend-up"></i> 15.2%</div>
+                </div>
+                <div style="font-size: 0.72rem; color: var(--text-dim);">From last week</div>
+                <svg class="sparkline-svg" viewBox="0 0 100 30">
+                  <path d="M 0,25 Q 25,20 40,12 T 70,18 T 100,5" fill="none" stroke="#a855f7" stroke-width="2.5"></path>
+                  <path d="M 0,25 Q 25,20 40,12 T 70,18 T 100,5 L 100,30 L 0,30 Z" fill="rgba(168, 85, 247, 0.12)"></path>
+                </svg>
+              </div>
+
+              <!-- Metric 3 -->
+              <div class="metric-card-box">
+                <div class="metric-card-header">
+                  <div>
+                    <div class="metric-card-title">Typo Fixes & Slang</div>
+                    <div class="metric-card-sub">Auto-Corrected Words</div>
+                  </div>
+                  <i class="fas fa-ellipsis metric-card-more"></i>
+                </div>
+                <div class="metric-val-row">
+                  <div class="metric-number-big" id="dashTypoFixCount">85</div>
+                  <div class="metric-trend-badge cyan"><i class="fas fa-arrow-trend-down"></i> -2</div>
+                </div>
+                <div style="font-size: 0.72rem; color: var(--text-dim);">Items below threshold</div>
+                <svg class="sparkline-svg" viewBox="0 0 100 30">
+                  <path d="M 0,18 Q 30,28 50,15 T 80,10 T 100,16" fill="none" stroke="#06b6d4" stroke-width="2.5"></path>
+                  <path d="M 0,18 Q 30,28 50,15 T 80,10 T 100,16 L 100,30 L 0,30 Z" fill="rgba(6, 182, 212, 0.12)"></path>
+                </svg>
+              </div>
+
+              <!-- Metric 4 -->
+              <div class="metric-card-box">
+                <div class="metric-card-header">
+                  <div>
+                    <div class="metric-card-title">Lookup Latency</div>
+                    <div class="metric-card-sub">Trie Search Time</div>
+                  </div>
+                  <i class="fas fa-ellipsis metric-card-more"></i>
+                </div>
+                <div class="metric-val-row">
+                  <div class="metric-number-big" id="dashLatency" style="color: #9333ea;">24 µs</div>
+                  <div class="metric-trend-badge purple"><i class="fas fa-arrow-trend-up"></i> 40.5%</div>
+                </div>
+                <div style="font-size: 0.72rem; color: var(--text-dim);">Sub-microsecond speed</div>
+                <svg class="sparkline-svg" viewBox="0 0 100 30">
+                  <path d="M 0,22 Q 25,12 45,20 T 75,8 T 100,14" fill="none" stroke="#ec4899" stroke-width="2.5"></path>
+                  <path d="M 0,22 Q 25,12 45,20 T 75,8 T 100,14 L 100,30 L 0,30 Z" fill="rgba(236, 72, 153, 0.12)"></path>
+                </svg>
+              </div>
+
+            </div>
+
+            <!-- Filter Category Tab Pills -->
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main);">Products List</h3>
+              <div class="filter-tabs-bar">
+                <button class="filter-pill-tab active" onclick="app.setEditorFilter('all')">All Product</button>
+                <button class="filter-pill-tab" onclick="app.setEditorFilter('slang')">WhatsApp Slang</button>
+                <button class="filter-pill-tab" onclick="app.setEditorFilter('india')">India & Proper Nouns</button>
+                <button class="filter-pill-tab" onclick="app.setEditorFilter('tech')">Tech & Code</button>
+                <button class="filter-pill-tab" onclick="app.setEditorFilter('typos')">Typo Fixer</button>
+              </div>
+            </div>
+
+            <!-- Main Interactive Editor Card -->
+            <div class="editor-main-card">
+              <div class="editor-card-top">
+                <div class="editor-card-title">
+                  <i class="fas fa-keyboard" style="color: #9333ea;"></i> Live Predictive Editor & WhatsApp Expander
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button class="btn-secondary-pill" style="padding: 4px 12px; font-size: 0.75rem;" onclick="app.setSampleText('idk')">💬 "idk"</button>
+                  <button class="btn-secondary-pill" style="padding: 4px 12px; font-size: 0.75rem;" onclick="app.setSampleText('hows India')">🇮🇳 "hows India"</button>
+                  <button class="btn-secondary-pill" style="padding: 4px 12px; font-size: 0.75rem;" onclick="app.setSampleText('prog')">💻 "prog"</button>
+                  <button class="btn-secondary-pill" style="padding: 4px 12px; font-size: 0.75rem;" onclick="app.setSampleText('computr')">⚠️ "computr"</button>
+                  <button class="btn-secondary-pill" style="padding: 4px 12px; font-size: 0.75rem;" onclick="app.clearEditor()">Clear</button>
+                </div>
+              </div>
+
+              <!-- Inset Editor -->
+              <div class="editor-input-wrapper">
+                <textarea 
+                  id="mainEditor" 
+                  class="main-input" 
+                  placeholder="Start typing anything (e.g. 'idk', 'brb', 'hows', 'India', 'prog', 'computr')..." 
+                  rows="4"
+                  autocomplete="off"
+                  autocorrect="off"
+                  spellcheck="false"></textarea>
+                <div class="ghost-overlay" id="ghostOverlay"></div>
+              </div>
+
+              <!-- Suggestion Pills Bar -->
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; color: var(--text-dim);">
+                  <i class="fas fa-bolt" style="color: #9333ea;"></i> Live Predictions:
+                </span>
+                <span style="font-size: 0.75rem; color: var(--text-dim);">
+                  Use <kbd style="background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-weight: 700;">↓</kbd> <kbd style="background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-weight: 700;">↑</kbd> to switch • Press <kbd style="background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-weight: 700;">Tab</kbd> / <kbd style="background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-weight: 700;">Enter</kbd> to accept
+                </span>
+              </div>
+
+              <div class="suggestions-bar" id="suggestionsBar">
+                <span style="color: var(--text-dim); font-size: 0.85rem;">Type letters to see instant completions...</span>
+              </div>
+
+              <!-- Typo Alert Box -->
+              <div class="typo-alert-box" id="typoAlertBox">
+                <div class="typo-header">
+                  <span><i class="fas fa-triangle-exclamation"></i> Typo Detected: "<span id="typoWordSpan"></span>"</span>
+                  <span style="font-size: 0.72rem; color: var(--text-dim);">Levenshtein Distance $d \le 2$</span>
+                </div>
+                <div class="typo-suggestions-list" id="typoSuggestionsList"></div>
+              </div>
+
+              <!-- Shortcuts Bar -->
+              <div class="shortcuts-bar">
+                <div class="shortcut-item"><kbd>↓</kbd> / <kbd>↑</kbd> Switch Next/Prev Suggestion</div>
+                <div class="shortcut-item"><kbd>Tab</kbd> / <kbd>Enter</kbd> Accept Highlighted Word</div>
+                <div class="shortcut-item"><kbd>Space</kbd> Commit & Auto-Expand Slang</div>
+                <div class="shortcut-item"><kbd>Alt</kbd>+<kbd>1</kbd>–<kbd>5</kbd> Direct Pick</div>
+              </div>
+            </div>
+
+            <!-- Bottom 3 Feature Product Cards Grid -->
+            <div class="bottom-features-grid">
+              
+              <!-- Card 1: WhatsApp Slang Quick Hub -->
+              <div class="feature-product-card">
+                <div>
+                  <span class="feature-card-tag">WhatsApp Slang Expander</span>
+                  <h4 class="feature-card-heading">Chat Shortcuts</h4>
+                  <div class="feature-card-meta">Type slang + Space/Tab to auto-expand</div>
+                  <div class="slang-chips-grid">
+                    <button class="slang-chip-btn" onclick="app.setSampleText('idk')"><code>idk</code> ➔ I don't know</button>
+                    <button class="slang-chip-btn" onclick="app.setSampleText('brb')"><code>brb</code> ➔ Be right back</button>
+                    <button class="slang-chip-btn" onclick="app.setSampleText('tbh')"><code>tbh</code> ➔ To be honest</button>
+                    <button class="slang-chip-btn" onclick="app.setSampleText('hru')"><code>hru</code> ➔ How are you?</button>
+                    <button class="slang-chip-btn" onclick="app.setSampleText('tysm')"><code>tysm</code> ➔ Thank you so much</button>
+                    <button class="slang-chip-btn" onclick="app.setSampleText('wbu')"><code>wbu</code> ➔ What about you?</button>
+                  </div>
+                </div>
+                <button class="feature-circular-btn" onclick="app.showTab('tab-slang')" title="View all WhatsApp slang">
+                  <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i>
+                </button>
+              </div>
+
+              <!-- Card 2: Top-K Priority Queue Heap -->
+              <div class="feature-product-card">
+                <div>
+                  <span class="feature-card-tag" style="background: #e0f2fe; color: #0284c7;">Max-Heap Leaderboard</span>
+                  <h4 class="feature-card-heading">Top-K Predictions</h4>
+                  <div class="feature-card-meta">Ranked by frequency weights in Priority Queue</div>
+                  <div class="heap-list" id="heapRankingList">
+                    <div style="color: var(--text-dim); font-size: 0.85rem; text-align: center; padding: 20px 0;">
+                      Type a prefix in the editor to populate the Heap
+                    </div>
+                  </div>
+                </div>
+                <button class="feature-circular-btn" style="background: #0284c7;" onclick="app.showTab('tab-analytics')" title="View Big-O Complexity">
+                  <i class="fas fa-chart-line" style="font-size: 0.75rem;"></i>
+                </button>
+              </div>
+
+              <!-- Card 3: Recent Typo Stream -->
+              <div class="feature-product-card">
+                <div>
+                  <span class="feature-card-tag" style="background: #fef2f2; color: #e11d48;">Levenshtein DP Fixer</span>
+                  <h4 class="feature-card-heading">Recent Auto-Fixes</h4>
+                  <div class="feature-card-meta">Stream of corrected spelling mistakes</div>
+                  <table class="soft-table">
+                    <tbody id="recentFixesTableBody">
+                      <tr>
+                        <td style="color: #e11d48; font-weight: 700;">computr</td>
+                        <td>➔ <strong style="color: #059669;">computer</strong></td>
+                        <td><span class="correction-dist">d=1</span></td>
+                        <td style="text-align: right; color: var(--text-dim); font-size: 0.75rem;">Just now</td>
+                      </tr>
+                      <tr>
+                        <td style="color: #e11d48; font-weight: 700;">teh</td>
+                        <td>➔ <strong style="color: #059669;">the</strong></td>
+                        <td><span class="correction-dist">d=1</span></td>
+                        <td style="text-align: right; color: var(--text-dim); font-size: 0.75rem;">1m ago</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button class="feature-circular-btn" style="background: #9333ea;" onclick="app.showTab('tab-matrix')" title="View DP Matrix">
+                  <i class="fas fa-table-cells" style="font-size: 0.75rem;"></i>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB 2: WHATSAPP SLANG HUB -->
+        <div class="tab-pane" id="tab-slang">
+          <div class="editor-main-card">
+            <div class="editor-card-top">
+              <div class="editor-card-title">
+                <i class="fas fa-comment-dots" style="color: #9333ea;"></i> WhatsApp & Chat Slang Knowledge Base
+              </div>
+              <span class="pill-slang-badge" style="padding: 4px 10px; font-size: 0.75rem;">36 Active Shortcuts</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+              Type any abbreviation in the playground and press <kbd style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-weight: 700;">Space</kbd> or <kbd style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-weight: 700;">Tab</kbd> to automatically expand it into full natural sentences!
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;" id="allSlangGrid"></div>
+          </div>
+        </div>
+
+        <!-- TAB 3: TRIE VISUALIZER -->
+        <div class="tab-pane" id="tab-trie">
+          <div class="editor-main-card" style="display: flex; flex-direction: column; gap: 14px;">
+            <div class="editor-card-top">
+              <div class="editor-card-title">
+                <i class="fas fa-project-diagram" style="color: #9333ea;"></i> Dynamic Trie (Prefix Tree) Hierarchy Explorer
+              </div>
+              <span class="pill-select-indicator">Interactive SVG Canvas</span>
+            </div>
+
+            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+              <div class="header-search-pill" style="width: 220px;">
+                <input type="text" id="triePrefixInput" placeholder="Inspect prefix (e.g. 'how', 'ind', 'pro')..." value="how">
+              </div>
+              <button class="btn-secondary-pill" id="btnRenderTrie"><i class="fas fa-arrows-rotate"></i> Render Subtree</button>
+              <button class="btn-secondary-pill" id="btnResetTrieZoom"><i class="fas fa-expand"></i> Reset View</button>
+              
+              <div style="margin-left: auto; display: flex; gap: 14px; font-size: 0.8rem; color: var(--text-muted);">
+                <span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: #10b981; margin-right: 4px;"></span> Word End</span>
+                <span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: #fff; border: 1.5px solid #9333ea; margin-right: 4px;"></span> Branch</span>
+              </div>
+            </div>
+
+            <div class="trie-canvas-wrapper" id="trieCanvasWrapper">
+              <svg id="trieSvg"></svg>
+            </div>
+
+            <div style="font-size: 0.82rem; color: var(--text-dim); display: flex; justify-content: space-between;">
+              <span>💡 <strong>Tip:</strong> Drag to pan, scroll to zoom. Click any node to load into playground!</span>
+              <span id="trieRenderMeta">Showing active branch for: "how"</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: LEVENSHTEIN DP MATRIX -->
+        <div class="tab-pane" id="tab-matrix">
+          <div class="editor-main-card" style="display: flex; flex-direction: column; gap: 14px;">
+            <div class="editor-card-top">
+              <div class="editor-card-title">
+                <i class="fas fa-table-cells" style="color: #9333ea;"></i> Dynamic Programming Levenshtein Distance Matrix
+              </div>
+              <span class="pill-select-indicator">Traceback Matrix</span>
+            </div>
+
+            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+              <div class="header-search-pill" style="width: 200px;">
+                <span style="font-size: 0.75rem; color: var(--text-dim); font-weight: 700;">Source:</span>
+                <input type="text" id="matrixSourceInput" value="computr">
+              </div>
+              <div class="header-search-pill" style="width: 200px;">
+                <span style="font-size: 0.75rem; color: var(--text-dim); font-weight: 700;">Target:</span>
+                <input type="text" id="matrixTargetInput" value="computer">
+              </div>
+              <button class="btn-primary-pill" id="btnComputeMatrix"><i class="fas fa-calculator"></i> Compute DP Matrix</button>
+
+              <div style="margin-left: auto;">
+                <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-dim);">Edit Distance ($D$): </span>
+                <span style="font-size: 1.1rem; font-weight: 800; color: #9333ea;" id="matrixDistanceVal">1</span>
+              </div>
+            </div>
+
+            <div class="matrix-table-wrapper" id="matrixTableWrapper"></div>
+          </div>
+        </div>
+
+        <!-- TAB 5: BATCH SENTENCE FIXER -->
+        <div class="tab-pane" id="tab-batch">
+          <div class="editor-main-card">
+            <div class="editor-card-top">
+              <div class="editor-card-title">
+                <i class="fas fa-wand-magic-sparkles" style="color: #9333ea;"></i> Batch Sentence & Paragraph Spell-Fixer
+              </div>
+              <span class="pill-select-indicator" style="background: #10b981;">Stream Analyzer</span>
+            </div>
+
+            <div class="batch-grid">
+              <div>
+                <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; display: block;">
+                  Raw Input Text (with typos & slang):
+                </label>
+                <div class="batch-box">
+                  <textarea id="batchInputText">idk hows India doing. Teh algoritm for computr programing is extremly effishent when using a trie data structur. brb</textarea>
+                </div>
+                <div style="margin-top: 14px; display: flex; gap: 10px;">
+                  <button class="btn-primary-pill" id="btnRunBatchAnalyze"><i class="fas fa-bolt"></i> Auto-Detect & Fix All</button>
+                  <button class="btn-secondary-pill" id="btnBatchReset">Reset Sample</button>
+                </div>
+              </div>
+
+              <div>
+                <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; display: block;">
+                  Corrected Output & Highlighted Diff:
+                </label>
+                <div class="batch-box" id="batchDiffOutput">
+                  <div class="batch-diff-view" id="batchDiffContent">
+                    Click "Auto-Detect & Fix All" to process the text.
+                  </div>
+                </div>
+                <div style="margin-top: 14px;">
+                  <button class="btn-secondary-pill" id="btnCopyBatch"><i class="fas fa-copy"></i> Copy Corrected Text</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 6: VOCABULARY KNOWLEDGE BASE -->
+        <div class="tab-pane" id="tab-dict">
+          <div class="editor-main-card">
+            <div class="editor-card-top">
+              <div class="editor-card-title">
+                <i class="fas fa-book-open" style="color: #9333ea;"></i> Vocabulary & Dictionary Knowledge Base
+              </div>
+              <span class="pill-select-indicator">10,652 Words</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 300px 1fr; gap: 20px;">
+              <div style="background: #f8fafc; padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                <h4 style="font-size: 0.92rem; margin-bottom: 12px; color: var(--text-main);">Add Custom Word</h4>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                  <input type="text" id="newWordInput" class="header-search-pill" style="width: 100%;" placeholder="e.g. 'India', 'Antigravity'">
+                  <input type="number" id="newWordFreq" class="header-search-pill" style="width: 100%;" value="9500" placeholder="Frequency">
+                  <button class="btn-primary-pill" id="btnAddWord" style="justify-content: center; width: 100%;"><i class="fas fa-plus"></i> Add to Trie</button>
+                </div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                  <div class="header-search-pill" style="width: 260px;">
+                    <i class="fas fa-search" style="font-size: 0.8rem; color: var(--text-dim);"></i>
+                    <input type="text" id="dictFilterInput" placeholder="Filter dictionary words...">
+                  </div>
+                  <span style="font-size: 0.8rem; color: var(--text-dim);" id="dictTableCount">Showing 10,652 entries</span>
+                </div>
+
+                <div style="max-height: 420px; overflow-y: auto; background: #f8fafc; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); padding: 10px;">
+                  <table class="soft-table">
+                    <thead>
+                      <tr style="text-align: left; font-size: 0.78rem; color: var(--text-dim);">
+                        <th>#</th>
+                        <th>Word</th>
+                        <th>Frequency Score</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="dictTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 7: BIG-O COMPLEXITY ANALYTICS -->
+        <div class="tab-pane" id="tab-analytics">
+          <div class="editor-main-card">
+            <div class="editor-card-top">
+              <div class="editor-card-title">
+                <i class="fas fa-chart-line" style="color: #9333ea;"></i> Data Structures & Algorithms Complexity Analysis
+              </div>
+              <span class="pill-select-indicator" style="background: #10b981;">Theoretical Proofs</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px;">
+              <div style="background: #f8fafc; padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                <h4 style="color: #9333ea; margin-bottom: 8px;"><i class="fas fa-sitemap"></i> Trie (Prefix Tree)</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">
+                  26-way branch tree indexing all prefix completions in sub-microsecond time.
+                </p>
+                <ul style="font-size: 0.82rem; color: var(--text-dim); padding-left: 18px; line-height: 1.8;">
+                  <li><strong>Search:</strong> $\mathcal{O}(L)$ where $L = \text{word length}$</li>
+                  <li><strong>Insert:</strong> $\mathcal{O}(L)$</li>
+                  <li><strong>Space:</strong> $\mathcal{O}(N \times L \times \Sigma)$</li>
+                </ul>
+              </div>
+
+              <div style="background: #f8fafc; padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                <h4 style="color: #0284c7; margin-bottom: 8px;"><i class="fas fa-cubes"></i> Binary Max-Heap</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">
+                  Complete binary tree maintaining frequency priority for Top-$K$ ranking.
+                </p>
+                <ul style="font-size: 0.82rem; color: var(--text-dim); padding-left: 18px; line-height: 1.8;">
+                  <li><strong>Push / Pop:</strong> $\mathcal{O}(\log M)$</li>
+                  <li><strong>Top-K Extract:</strong> $\mathcal{O}(K \log M)$</li>
+                  <li><strong>Space:</strong> $\mathcal{O}(M)$</li>
+                </ul>
+              </div>
+
+              <div style="background: #f8fafc; padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                <h4 style="color: #059669; margin-bottom: 8px;"><i class="fas fa-table-cells"></i> Levenshtein DP</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">
+                  Bounded Dynamic Programming search with branch pruning for typo correction.
+                </p>
+                <ul style="font-size: 0.82rem; color: var(--text-dim); padding-left: 18px; line-height: 1.8;">
+                  <li><strong>Pruned Search:</strong> $\mathcal{O}(\text{active branches})$</li>
+                  <li><strong>Max Distance:</strong> $d \le 2$</li>
+                  <li><strong>Recurrence:</strong> $\min(\text{insert}, \text{del}, \text{sub})$</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="dict_data.js"></script>
+  <script src="trie_engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

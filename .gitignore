@@ -1,0 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C compilation outputs
+*.o
+*.obj
+*.exe
+*.out
+*.dll
+*.so
+*.dylib
+bin/
+
+# Environment / IDE
+.vscode/
+.idea/
+.DS_Store
